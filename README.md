@@ -4,6 +4,8 @@
 
 **[打开游戏](https://yiheng-guo.github.io/orbit-dispatch/)** · [玩法与产品定义](docs/PRODUCT.md) · [技术设计](docs/ARCHITECTURE.md) · [试玩指南](docs/PLAYTEST.md)
 
+![星港调度游戏画面](docs/images/gameplay.png)
+
 六段手作关卡，从直线通联到多次折返。支持鼠标、键盘和触屏，没有倒计时；可以撤销、获取提示、重试与选择关卡。星级和试玩记录保存在本机，反馈可导出，不会自动上传。
 
 ## 怎么玩

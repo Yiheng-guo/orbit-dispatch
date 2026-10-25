@@ -68,7 +68,7 @@ try{
   const before=await mp.locator('#remaining').textContent();await mp.locator('[data-cell="11"]').tap();
   assert.equal(Number(before)-Number(await mp.locator('#remaining').textContent()),1);
   await mp.screenshot({path:'test-results/mobile-play.png',fullPage:true});
-  await mp.setViewportSize({width:360,height:780});await noOverflow(mp);
+  await mp.setViewportSize({width:360,height:780});await mp.reload();await mp.locator('#start').tap();await noOverflow(mp);
   await mp.screenshot({path:'test-results/mobile-360.png',fullPage:true});
   await mp.locator('#help').tap();assert.equal(await mp.locator('#help-dialog').isVisible(),true);
   await mp.locator('#help-dialog [data-close]').last().tap();
