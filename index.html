@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a111a">
+  <meta name="description" content="旋转航线，点亮中继站，把能源送回星港。六段航程，一场安静的太空解谜。">
+  <title>星港调度 · Orbit Dispatch</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<header class="topbar">
+  <a href="./" class="brand"><span class="brand-mark">✦</span><span>星港调度<small>ORBIT DISPATCH</small></span></a>
+  <nav aria-label="辅助功能"><button id="sound" class="quiet">声音：关</button><button id="help" class="quiet">飞行手册 <span>↗</span></button></nav>
+</header>
+<main>
+  <section class="intro">
+    <p class="eyebrow"><span class="live-dot"></span> DEEP SPACE NETWORK / 深空航线计划</p>
+    <h1>让失联的星港，<br><em>再次亮起来。</em></h1>
+    <p class="lede">旋转航线，点亮中继站。<br>在有限的调度次数里，为远方送去一束光。</p>
+    <div class="intro-bottom"><span class="orbit-icon" aria-hidden="true">◎</span><p>没有倒计时。<br><span>留一点时间，给你的下一步。</span></p></div>
+    <div class="mission-list"><p class="eyebrow">航程记录 <span id="total-stars">0 / 18 ✦</span></p><div id="levels" class="levels" aria-label="选择关卡"></div></div>
+  </section>
+  <section class="console" aria-label="航线调度台">
+    <div class="console-head"><div><p class="eyebrow" id="sector">SECTOR 01 / 06</p><h2 id="level-title">初次通联</h2></div><span class="status-pill" id="phase">等待接入</span></div>
+    <div class="metrics"><div><span>剩余调度</span><strong id="remaining">—</strong></div><div><span>中继站</span><strong id="relay-count">0 / 1</strong></div><div><span>三星参考</span><strong id="par">—</strong></div></div>
+    <div class="board-frame">
+      <div class="board-coordinates" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
+      <div id="board" class="board" aria-label="5 行 5 列航线网格"></div>
+      <div id="welcome" class="welcome"><div class="welcome-symbol" aria-hidden="true">✧</div><p class="eyebrow">一束光的旅程</p><h3>你准备好接管航线了吗？</h3><p>点击线路，顺时针旋转。<br>连接左侧能源与右侧星港，点亮所有中继站。</p><button id="start" class="primary">开始第一段航程 <span>→</span></button><small>鼠标 · 触屏 · 键盘均可操作</small></div>
+      <div id="result" class="result" hidden><p class="eyebrow" id="result-label"></p><div class="result-stars" id="result-stars"></div><h3 id="result-title"></h3><p id="result-copy"></p><button id="next" class="primary"></button><button id="result-retry" class="quiet">重新挑战本关 ↻</button></div>
+    </div>
+    <div class="legend"><span><i class="legend-source"></i>能源</span><span><i class="legend-relay"></i>中继站</span><span><i class="legend-target"></i>星港</span><span class="legend-hint">每次点击旋转 90° ↻</span></div>
+    <p id="message" class="message" role="status" aria-live="polite">准备好后，开始你的第一段航程。</p>
+    <div class="toolbar"><button id="undo" class="secondary" disabled>↶ 撤销</button><button id="hint" class="secondary" disabled>✧ 提示</button><button id="restart" class="secondary" disabled>↻ 重试</button><button id="share" class="quiet share">分享航程 ↗</button></div>
+  </section>
+</main>
+<footer><span>一条航线，一次重新连接。<span class="footer-dot"> · </span>6 段手作关卡</span><div><button id="feedback" class="quiet">试玩反馈</button><a href="https://github.com/Yiheng-guo/orbit-dispatch" target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>
+<dialog id="help-dialog"><button class="close" data-close aria-label="关闭飞行手册">×</button><p class="eyebrow">FLIGHT MANUAL</p><h2>把光送到远方。</h2><p>线路两端相接，能源就能流过。点击一格，让它顺时针旋转 90°；金色能源与蓝色星港固定不动。</p><p>带菱形标记的是中继站。<strong>星港和所有中继站同时接通</strong>才算完成，不需要点亮整个棋盘。</p><p>每次旋转消耗一次调度。次数用尽仍未接通即失败；可以撤销或重试。提示会点亮一个值得调整的格子，不代替你操作。使用提示后，本次最多获得一星。</p><p>键盘：方向键选择格子，Enter / 空格旋转；U 撤销，H 提示，R 重试。固定端点可选中但不能旋转。三星参考是预设航线的步数，发现更短路线同样算三星。</p><p>进度保存在当前浏览器。声音默认关闭；减少动态效果会遵循系统设置。</p><button class="primary" data-close>明白了，返回航线 →</button></dialog>
+<dialog id="feedback-dialog"><button class="close" data-close aria-label="关闭试玩反馈">×</button><p class="eyebrow">MISSION DEBRIEF</p><h2>这一段航程，感觉如何？</h2><p>记录只保存在你的浏览器中，不会自动上传。可以导出后交给开发者，帮助改善玩法。</p><div class="feedback-options"><button class="secondary" data-feeling="clear">规则很清楚</button><button class="secondary" data-feeling="confusing">有点没看懂</button><button class="secondary" data-feeling="again">还想再来一关</button></div><p id="feedback-status" role="status"></p><button id="export" class="primary">导出试玩记录 ↓</button><button id="clear" class="quiet">清除本机进度与记录</button><p class="privacy">记录包含关卡、操作类型、次数、时间与所选反馈，不包含姓名和联系方式。最多保留最近 200 条。</p></dialog>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
